@@ -26,11 +26,12 @@ app.use(express.json());
 // Make public a static folder
 app.use(express.static("public"));
 
-// If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+var MONGODB_URI =
+  process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 
-mongoose.connect(MONGODB_URI);
-
+mongoose.connect(MONGODB_URI, {
+  useNewUrlParser: true
+});
 // Routes
 
 // A GET route for scraping the echoJS website
